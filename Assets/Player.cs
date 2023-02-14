@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static TimeController;
 
 public class Player : MonoBehaviour
 {
@@ -14,5 +16,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdatedTimePhase(Component sender, object data)
+    {
+        if (data is ETimeOfDay timeOfDay)
+        {
+            Debug.Log($"{timeOfDay}");
+        }
     }
 }
