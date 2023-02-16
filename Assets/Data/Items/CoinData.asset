@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Coin
   icon: {fileID: 0}
+  isStackable: 1
+  maxStackCount: 10
+  timeType: 1

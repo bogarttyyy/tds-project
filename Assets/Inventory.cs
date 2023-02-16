@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static event Action<List<InventoryItem>> OnInventoryChange;
+
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
 
@@ -20,11 +23,12 @@ public class Inventory : MonoBehaviour
 
     public void Add(ItemData itemData)
     {
-        if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
+        if (itemDictionary.TryGetValue(itemData, out InventoryItem item) && item.CanStack())
         {
             // if found, add to stack
             item.AddToStack();
             Debug.Log($"{item.itemData.displayName} total stack: {item.stackSize}");
+            OnInventoryChange?.Invoke(inventory);
         }
         else
         {
@@ -33,6 +37,7 @@ public class Inventory : MonoBehaviour
             inventory.Add(newItem);
             itemDictionary.Add(itemData, newItem);
             Debug.Log($"New inventory entry: {newItem.itemData.displayName}");
+            OnInventoryChange?.Invoke(inventory);
         }
     }
 
@@ -46,6 +51,12 @@ public class Inventory : MonoBehaviour
                 inventory.Remove(item);
                 itemDictionary.Remove(itemData);
             }
+            OnInventoryChange?.Invoke(inventory);
         }
+    }
+
+    internal List<InventoryItem> GetInventoryList()
+    {
+        return inventory;
     }
 }

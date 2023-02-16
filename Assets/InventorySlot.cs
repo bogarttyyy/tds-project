@@ -13,7 +13,7 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         icon.enabled = false;
-        labelText.enabled = false;
+        //labelText.enabled = false;
         stackSizeText.enabled = false;
     }
 
@@ -26,11 +26,11 @@ public class InventorySlot : MonoBehaviour
         }
 
         icon.enabled = true;
-        labelText.enabled = true;
+        //labelText.enabled = true;
         stackSizeText.enabled = true;
 
         icon.sprite = item.itemData.icon;
-        labelText.text = item.itemData.name;
+        //labelText.text = item.itemData.name;
         stackSizeText.text = item.stackSize.ToString();
     }
 }

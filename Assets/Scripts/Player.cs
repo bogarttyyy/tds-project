@@ -6,16 +6,15 @@ using static TimeController;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public InventoryManager inventoryManager;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            inventoryManager.gameObject.SetActive(!inventoryManager.gameObject.activeSelf);
+        }
     }
 
     public void UpdatedTimePhase(Component sender, object data)

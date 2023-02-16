@@ -25,4 +25,8 @@ public class InventoryItem
         stackSize--;
     }
 
+    public bool CanStack()
+    {
+        return stackSize < itemData.maxStackCount;
+    }
 }
