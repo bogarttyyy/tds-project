@@ -34,12 +34,12 @@ public class TopDownController : MonoBehaviour
 
         fire = playerControls.Player.Fire;
         fire.Enable();
-
         fire.performed += Fire;
     }
 
     private void OnDisable()
     {
+        fire.performed -= Fire;
         move.Disable();
         fire.Disable();
     }

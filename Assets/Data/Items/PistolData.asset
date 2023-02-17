@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 139510d66ef407840b2e5100f4f810d2, type: 3}
-  m_Name: CoinData
+  m_Name: PistolData
   m_EditorClassIdentifier: 
-  displayName: Coin
-  icon: {fileID: 21300000, guid: 676c4e71d1bcf264da77a89c2c1a9f10, type: 3}
+  displayName: Pistol
+  icon: {fileID: 21300000, guid: be10331f6f637f8438742edcf62ce0f7, type: 3}
   autoPickup: 0
-  maxStackCount: 10
-  timeType: 1
+  maxStackCount: 1
+  timeType: 2

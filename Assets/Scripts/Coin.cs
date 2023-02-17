@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour, ICollectable
 {
-    public static event HandleGemCollected OnCoinCollected;
-    public delegate void HandleGemCollected(ItemData itemData);
+    public static event HandleOnCoinCollected OnCoinCollected;
+    public delegate void HandleOnCoinCollected(ItemData itemData);
 
     public ItemData coinData;
 

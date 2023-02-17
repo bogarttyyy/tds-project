@@ -14,11 +14,13 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         Coin.OnCoinCollected += Add;
+        Firearm.OnFirearmCollected += Add;
     }
 
     private void OnDisable()
     {
         Coin.OnCoinCollected -= Add;
+        Firearm.OnFirearmCollected -= Add;
     }
 
     public void Add(ItemData itemData)

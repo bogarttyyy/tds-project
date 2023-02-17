@@ -7,7 +7,7 @@ public class ItemData : ScriptableObject
 {
     public string displayName;
     public Sprite icon;
-    public bool isStackable;
+    public bool autoPickup;
     public int maxStackCount = 1;
     public EItemType timeType;
 }
