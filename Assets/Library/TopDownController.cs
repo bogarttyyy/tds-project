@@ -16,6 +16,8 @@ public class TopDownController : MonoBehaviour
     private InputAction move;
     private InputAction fire;
 
+    public Animator animator;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -54,14 +56,29 @@ public class TopDownController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            animator.SetBool("Running", true);
             moveSpeed = sprintSpeed;
         }
         else
         {
+            animator.SetBool("Running", false);
             moveSpeed = walkSpeed;
         }
 
         moveDirection = move.ReadValue<Vector2>();
+
+        animator.SetFloat("Horizontal", moveDirection.x);
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+
+        if (moveDirection.x > 0)
+        {
+            transform.localScale = new Vector3(2, 2);
+        }
+
+        if (moveDirection.x < 0)
+        {
+            transform.localScale = new Vector3(-2, 2);
+        }
     }
 
     private void FixedUpdate()

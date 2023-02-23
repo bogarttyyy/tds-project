@@ -10,6 +10,14 @@ public class Firearm : MonoBehaviour, ICollectable
 
     public ItemData firearmData;
 
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = firearmData.icon;
+    }
+
     public void Collect()
     {
         Debug.Log("Firearm Collected");
