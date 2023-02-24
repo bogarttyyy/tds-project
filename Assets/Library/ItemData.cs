@@ -9,5 +9,5 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public bool autoPickup;
     public int maxStackCount = 1;
-    public EItemType timeType;
+    public EItemType itemType;
 }

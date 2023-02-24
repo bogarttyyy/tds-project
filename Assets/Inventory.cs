@@ -2,25 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     public static event Action<List<InventoryItem>> OnInventoryChange;
+    public static event Action<List<InventoryItem>> OnFirearmAddedToInventory;
 
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
 
+
     private void OnEnable()
     {
         Coin.OnCoinCollected += Add;
-        Firearm.OnFirearmCollected += Add;
+        Firearm.OnFirearmCollected += AddFirearm;
     }
 
     private void OnDisable()
     {
         Coin.OnCoinCollected -= Add;
-        Firearm.OnFirearmCollected -= Add;
+        Firearm.OnFirearmCollected -= AddFirearm;
     }
 
     public void Add(ItemData itemData)
@@ -43,6 +46,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void AddFirearm(ItemData itemData)
+    {
+        Debug.Log("Attempting to add Firearm");
+        Debug.Log(itemData.itemType);
+        Debug.Log(itemData.itemType is EItemType.Weapon);
+        if (itemData.itemType is EItemType.Weapon)
+        {
+            Add(itemData);
+            OnFirearmAddedToInventory?.Invoke(GetFirearms());
+        }
+    }
+
     public void Remove(ItemData itemData)
     {
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
@@ -55,6 +70,30 @@ public class Inventory : MonoBehaviour
             }
             OnInventoryChange?.Invoke(inventory);
         }
+    }
+
+    private InventoryItem GetFirearm(ItemData itemData)
+    {
+        if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
+        {
+            return item;
+        }
+        
+        return null;
+    }
+
+    private List<InventoryItem> GetFirearms()
+    {
+        List<InventoryItem> weapons = new List<InventoryItem>();
+        foreach (InventoryItem item in inventory)
+        {
+            if (item.itemData.itemType is EItemType.Weapon)
+            {
+                weapons.Add(item);
+            }
+        }
+
+        return weapons;
     }
 
     internal List<InventoryItem> GetInventoryList()
