@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -71,6 +72,24 @@ public class Inventory : MonoBehaviour
             OnInventoryChange?.Invoke(inventory);
         }
     }
+
+    public bool HasWeapon()
+    {
+        return inventory.Any(item => item.itemData.itemType == EItemType.Weapon);
+    }
+
+    public InventoryItem GetWeapon()
+    {
+        var firearm = inventory.FirstOrDefault(f => f.itemData.itemType == EItemType.Weapon);
+
+        if (firearm != null)
+        {
+            return firearm;
+        }
+
+        return null;
+    }
+    
 
     private InventoryItem GetFirearm(ItemData itemData)
     {
