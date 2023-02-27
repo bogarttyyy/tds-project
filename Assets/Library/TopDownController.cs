@@ -18,6 +18,8 @@ public class TopDownController : MonoBehaviour
 
     public Animator animator;
 
+    public bool useFlipSprite = false;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -72,12 +74,20 @@ public class TopDownController : MonoBehaviour
 
         if (moveDirection.x > 0)
         {
-            transform.localScale = new Vector3(2, 2);
+            animator.SetBool("FaceLeft", false);
+            if (useFlipSprite)
+            {
+                transform.localScale = new Vector3(2, 2);
+            }
         }
 
         if (moveDirection.x < 0)
         {
-            transform.localScale = new Vector3(-2, 2);
+            animator.SetBool("FaceLeft", true);
+            if (useFlipSprite)
+            {
+                transform.localScale = new Vector3(2, 2);
+            }
         }
     }
 
