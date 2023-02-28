@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         Vector3 dir = weaponAnchor.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weaponAnchor.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        weaponAnchor.localPosition = Vector3.ClampMagnitude(dir.normalized * -1, 0.5f);
+        weaponAnchor.localPosition = Vector3.ClampMagnitude(dir.normalized * -1, 0.6f);
 
         if (dir.x > 0)
         {
@@ -66,9 +66,9 @@ public class Player : MonoBehaviour
         else
         {
             sprite.flipY = true;
-            //sprite.flipX = false;
         }
-            sprite.flipX = true;
+
+        sprite.flipX = true;
     }
 
     private void OpenInventory(InputAction.CallbackContext context)
