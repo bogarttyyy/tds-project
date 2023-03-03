@@ -1075,9 +1075,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 0, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -3200,6 +3200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd112fe85cca16a46a73262360c8fc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useEdgeScrolling: 0
+  useDragPan: 0
+  useRotate: 1
+  dragPanSpeed: -0.56
 --- !u!224 &1472692481 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 697694341175412138, guid: 469bb83892397394c9bd9207e7c8e1f4, type: 3}
