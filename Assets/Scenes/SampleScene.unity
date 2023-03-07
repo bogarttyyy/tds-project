@@ -4670,6 +4670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430656929619063204, guid: 9df9e7ca104541d4aa77d4a03378a6e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1513855953841341570, guid: 9df9e7ca104541d4aa77d4a03378a6e5, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4779,9 +4783,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 809799189}
     m_Modifications:
+    - target: {fileID: 3300940810499647951, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300940810968516431, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3300940810993223650, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
       propertyPath: m_Name
       value: HealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300940810993223650, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3300940810993223650, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
       propertyPath: m_IsActive
@@ -4870,6 +4886,10 @@ PrefabInstance:
     - target: {fileID: 3300940810993223651, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300940811372760180, guid: e3f31387adb8df44ebef6e10cd9246d2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

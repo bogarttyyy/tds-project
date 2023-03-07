@@ -35,29 +35,35 @@ public class Door : MonoBehaviour
         //    _playerInTrigger = true;
         //}
 
-        if (!isLocked)
+        if (IsPlayerCollision(collision))
         {
-            doorObject.gameObject.SetActive(false);
-        }
+            if (!isLocked)
+            {
+                doorObject.gameObject.SetActive(false);
+            }
 
-        if (isLocked)
-        {
-            progressBar.gameObject.SetActive(true);
+            if (isLocked)
+            {
+                progressBar.gameObject.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isLocked & unlockProgress < 1)
+        if (IsPlayerCollision(collision))
         {
-            unlockProgress += Time.deltaTime;
-            progressBar.ProgressBar.fillAmount = unlockProgress;
-        }
-        else
-        {
-            doorObject.gameObject.SetActive(false);
-            progressBar.gameObject.SetActive(false);
-            isLocked = false;
+            if (isLocked & unlockProgress < 1)
+            {
+                unlockProgress += Time.deltaTime;
+                progressBar.ProgressBar.fillAmount = unlockProgress;
+            }
+            else
+            {
+                doorObject.gameObject.SetActive(false);
+                progressBar.gameObject.SetActive(false);
+                isLocked = false;
+            }
         }
     }
 
@@ -68,10 +74,18 @@ public class Door : MonoBehaviour
         //    _playerInTrigger = false;
 
         //}
-        unlockProgress = 0;
-        progressBar.gameObject.SetActive(false);
-        progressBar.ProgressBar.fillAmount = 0;
+        if (IsPlayerCollision(collision))
+        {
+            unlockProgress = 0;
+            progressBar.gameObject.SetActive(false);
+            progressBar.ProgressBar.fillAmount = 0;
 
-        doorObject.gameObject.SetActive(true);
+            doorObject.gameObject.SetActive(true);
+        }
+    }
+
+    private bool IsPlayerCollision(Collider2D collider)
+    {
+        return collider.gameObject.GetComponent<Player>() != null;
     }
 }
