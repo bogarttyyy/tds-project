@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55067f535b4348c46bf8fbe38a2eca54, type: 3}
   m_Name: NewPistolData
   m_EditorClassIdentifier: 
-  displayName: 
-  icon: {fileID: 0}
+  displayName: Pistol
+  icon: {fileID: 21300000, guid: ba8b6174b5e09ec4580895c7d8374ec4, type: 3}
+  itemPrefab: {fileID: 6435846890393512348, guid: 965b43e8d366ecb4d8cfea9d708d3d6f, type: 3}
   autoPickup: 0
   maxStackCount: 1
-  itemType: 0
-  projectile: {fileID: 0}
+  itemType: 2
   gunType: 0
-  projectilePrefab: {fileID: 0}
-  endpoint: {fileID: 0}
+  projectilePrefab: {fileID: 5185367573394964052, guid: 5d26019d4e9fda54892f7e3f817367aa, type: 3}
+  projectileSpeed: 50

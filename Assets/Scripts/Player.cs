@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
         //weaponAnchor.localPosition = new Vector3(0.5f, 0);
 
         SpriteRenderer sprite = weapon.gameObject.GetComponent<SpriteRenderer>();
+        CircleCollider2D collider = weapon.GetComponent<CircleCollider2D>();
+        collider.enabled = false;
         //sprite.sprite = item.itemData.icon;
 
 

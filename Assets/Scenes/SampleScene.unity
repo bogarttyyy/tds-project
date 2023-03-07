@@ -1921,6 +1921,8 @@ GameObject:
   - component: {fileID: 809799197}
   - component: {fileID: 809799196}
   - component: {fileID: 809799199}
+  - component: {fileID: 809799201}
+  - component: {fileID: 809799200}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -2004,6 +2006,7 @@ MonoBehaviour:
   inventory: {fileID: 809799195}
   topDownController: {fileID: 809799187}
   weaponAnchor: {fileID: 1128371451}
+  onEquipFirearm: {fileID: 11400000, guid: 6cf1700060892d840b78fa2d2291bb7c, type: 2}
 --- !u!114 &809799192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2201,12 +2204,53 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809799186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bae5c85b5f7f3e4cb42d75794fe8ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 5185367573394964052, guid: 5d26019d4e9fda54892f7e3f817367aa, type: 3}
+--- !u!114 &809799200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809799186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d3b86cf4fecf0408b476b33a29c79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6cf1700060892d840b78fa2d2291bb7c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809799201}
+        m_TargetAssemblyTypeName: ShootingSystem, Assembly-CSharp
+        m_MethodName: EquipGun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &809799201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809799186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7851f9c85119841bb7abbbf0b10640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 0}
 --- !u!224 &838537965 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 697694341175412138, guid: 469bb83892397394c9bd9207e7c8e1f4, type: 3}
