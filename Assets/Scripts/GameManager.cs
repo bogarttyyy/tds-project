@@ -5,14 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    public Player player;
 
-    // Update is called once per frame
-    void Update()
+
+    public Player GetPlayer()
     {
-        
+        return player;
     }
 }

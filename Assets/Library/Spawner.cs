@@ -1,5 +1,7 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,10 +15,10 @@ public class Spawner : MonoBehaviour
     private int max = 5;
     [SerializeField]
     private int min = 1;
+    [SerializeField]
+    private List<GameObject> entityList = new List<GameObject>();
 
-    private List<Transform> entityList = new List<Transform>();
     private bool isSpawning;
-
 
     private void Start()
     {
@@ -25,7 +27,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (!isSpawning)
+        if (!isSpawning && GetSpawnCount() < max)
         {
             StartCoroutine(Spawn());
         }
@@ -43,11 +45,28 @@ public class Spawner : MonoBehaviour
         {
             isSpawning = true;
             yield return new WaitForSeconds(spawnInterval);
-
+            entityList.Add(Instantiate(prefab, new Vector3( Random.Range(-10,10), transform.position.y), Quaternion.identity).gameObject);
             Debug.Log("Spawn");
         }
         Debug.Log("Stopped spawn");
         isSpawning = false;
     }
 
+    [Button("Remove One")]
+    private void Despawn()
+    {
+        if (entityList.Any())
+        {
+            GameObject entity = entityList.First();
+            entityList.Remove(entity);
+            Destroy(entity);
+        }
+    }
+
+
+    public void Despawn(Component sender, object gameObject)
+    {
+        Debug.Log("Attempting Despawn");
+        entityList.Remove((GameObject)gameObject);
+    }
 }

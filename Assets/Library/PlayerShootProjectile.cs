@@ -15,7 +15,6 @@ public class PlayerShootProjectile : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
-        
     }
 
     private void OnEnable()
@@ -34,11 +33,12 @@ public class PlayerShootProjectile : MonoBehaviour
     private void Fire_performed(InputAction.CallbackContext obj)
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log($"Separated Fire Action: ({transform.position.x}, {transform.position.y})");
+        //Debug.Log($"Separated Fire Action: ({transform.position.x}, {transform.position.y})");
         Transform projectileTransform = Instantiate(projectile, transform.position, Quaternion.identity);
 
-        Vector3 shootDir = (mousePos - transform.position).normalized;
+        Vector3 shootDir = (mousePos - transform.position);
         shootDir.z = 0;
-        projectileTransform.GetComponent<Projectile>().Setup(shootDir);
+        Debug.Log(shootDir);
+        projectileTransform.GetComponent<Projectile>().Setup(shootDir.normalized);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 100f;
+    private float speed = 100f;
     
     private Vector3 shootDir;
 
@@ -26,13 +26,13 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.position += shootDir * moveSpeed * Time.deltaTime;
+        transform.position += shootDir * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // ignore player layer
-        Debug.Log($"Collision Detected!: {LayerMask.LayerToName(collision.gameObject.layer)}");
+        //Debug.Log($"Collision Detected!: {LayerMask.LayerToName(collision.gameObject.layer)}");
         if (collision.gameObject.layer != playerLayer)
         {
             Destroy(gameObject);
