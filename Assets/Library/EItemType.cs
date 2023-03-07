@@ -5,5 +5,6 @@
     Weapon,
     Health,
     Stamina,
-    Ammo
+    Ammo,
+    WeaponMelee
 }

@@ -19,6 +19,12 @@ public class Player : MonoBehaviour
 
     private InputAction inventoryOpen;
 
+    public GameEvent onEquipFirearm;
+
+    private Transform weapon;
+
+    private bool hasEquipped;
+
     private void OnEnable()
     {
         inventoryOpen = topDownController.playerControls.Player.Inventory;
@@ -46,18 +52,27 @@ public class Player : MonoBehaviour
     {
         if (!weaponAnchor.gameObject.activeSelf)
         {
-            weaponAnchor.gameObject.SetActive(true);
+            //weaponAnchor.gameObject.SetActive(true);
+            //item.itemData.itemPrefab.gameObject
         }
-        weaponAnchor.localPosition = new Vector3(0.5f, 0);
 
-        SpriteRenderer sprite = weaponAnchor.gameObject.GetComponent<SpriteRenderer>();
-        sprite.sprite = item.itemData.icon;
-        
+        if (!hasEquipped)
+        {
+            hasEquipped = true;
+            weapon = Instantiate(item.itemData.itemPrefab.gameObject, weaponAnchor.position, Quaternion.identity, transform).transform;
+            onEquipFirearm.Raise(this, weapon);
+        }
 
-        Vector3 dir = weaponAnchor.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //weaponAnchor.localPosition = new Vector3(0.5f, 0);
+
+        SpriteRenderer sprite = weapon.gameObject.GetComponent<SpriteRenderer>();
+        //sprite.sprite = item.itemData.icon;
+
+
+        Vector3 dir = weapon.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        weaponAnchor.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        weaponAnchor.localPosition = Vector3.ClampMagnitude(dir.normalized * -1, 0.6f);
+        weapon.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        weapon.localPosition = Vector3.ClampMagnitude(dir.normalized * -1, 0.6f);
 
         if (dir.x > 0)
         {

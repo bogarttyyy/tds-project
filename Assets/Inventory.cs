@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
 
-
     private void OnEnable()
     {
         Coin.OnCoinCollected += Add;
@@ -50,8 +49,6 @@ public class Inventory : MonoBehaviour
     public void AddFirearm(ItemData itemData)
     {
         Debug.Log("Attempting to add Firearm");
-        Debug.Log(itemData.itemType);
-        Debug.Log(itemData.itemType is EItemType.Weapon);
         if (itemData.itemType is EItemType.Weapon)
         {
             Add(itemData);

@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class Firearm : MonoBehaviour, ICollectable
 {
     public static event HandleOnFirearmCollected OnFirearmCollected;
-    public delegate void HandleOnFirearmCollected(ItemData itemData);
+    public delegate void HandleOnFirearmCollected(WeaponData itemData);
 
-    public ItemData firearmData;
+    public WeaponData firearmData;
+    public Transform endpoint;
 
     private SpriteRenderer spriteRenderer;
 
