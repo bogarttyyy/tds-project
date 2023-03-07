@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6435846890393512347}
   - component: {fileID: 6435846890393512346}
   - component: {fileID: 6435846890393512345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5758842671228398564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunEndpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6543986112870358881}
   - component: {fileID: 2941640528009386528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: coinv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -687709178850737044}
   - component: {fileID: 7066715487340029134}
   - component: {fileID: 8431391353637132006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
