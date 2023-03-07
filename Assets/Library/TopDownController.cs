@@ -36,16 +36,17 @@ public class TopDownController : MonoBehaviour
         move = playerControls.Player.Move;
         move.Enable();
 
-        fire = playerControls.Player.Fire;
-        fire.Enable();
-        fire.performed += Fire;
+        //fire = playerControls.Player.Fire;
+        //fire.Enable();
+        //fire.performed += Fire;
     }
 
     private void OnDisable()
     {
-        fire.performed -= Fire;
         move.Disable();
-        fire.Disable();
+
+        //fire.performed -= Fire;
+        //fire.Disable();
     }
 
     // Update is called once per frame
@@ -94,10 +95,5 @@ public class TopDownController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-    }
-
-    private void Fire(InputAction.CallbackContext context)
-    {
-        Debug.Log("We fired");
     }
 }
