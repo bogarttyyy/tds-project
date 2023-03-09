@@ -20,4 +20,4 @@ MonoBehaviour:
   itemType: 2
   gunType: 0
   projectilePrefab: {fileID: 5185367573394964052, guid: 5d26019d4e9fda54892f7e3f817367aa, type: 3}
-  projectileSpeed: 50
+  projectileSpeed: 25

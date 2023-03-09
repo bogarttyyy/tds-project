@@ -39,6 +39,6 @@ public class PlayerShootProjectile : MonoBehaviour
         Vector3 shootDir = (mousePos - transform.position);
         shootDir.z = 0;
         Debug.Log(shootDir);
-        projectileTransform.GetComponent<Projectile>().Setup(shootDir.normalized);
+        projectileTransform.GetComponent<Projectile>().Setup(shootDir.normalized, 50f);
     }
 }

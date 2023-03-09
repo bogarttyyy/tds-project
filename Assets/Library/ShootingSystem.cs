@@ -39,8 +39,7 @@ public class ShootingSystem : MonoBehaviour
 
             Vector3 shootDir = (mousePos - gun.endpoint.position);
             shootDir.z = 0;
-            Debug.Log(shootDir);
-            projectileTransform.GetComponent<Projectile>().Setup(shootDir.normalized);
+            projectileTransform.GetComponent<Projectile>().Setup(shootDir.normalized, gun.firearmData.projectileSpeed);
         }
         else
         {

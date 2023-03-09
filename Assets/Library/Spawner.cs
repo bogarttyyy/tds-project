@@ -45,7 +45,8 @@ public class Spawner : MonoBehaviour
         {
             isSpawning = true;
             yield return new WaitForSeconds(spawnInterval);
-            entityList.Add(Instantiate(prefab, new Vector3( Random.Range(-10,10), transform.position.y), Quaternion.identity).gameObject);
+            Vector3 randomizedX = new Vector3(transform.position.x + Random.Range(-10, 10), transform.position.y);
+            entityList.Add(Instantiate(prefab, randomizedX, Quaternion.identity).gameObject);
             Debug.Log("Spawn");
         }
         Debug.Log("Stopped spawn");
