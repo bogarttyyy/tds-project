@@ -16,4 +16,9 @@ public class Coin : MonoBehaviour, ICollectable
         Destroy(gameObject);
         OnCoinCollected?.Invoke(coinData);
     }
+
+    public ItemData GetItemData()
+    {
+        return coinData;
+    }
 }

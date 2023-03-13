@@ -25,4 +25,9 @@ public class Firearm : MonoBehaviour, ICollectable
         Destroy(gameObject);
         OnFirearmCollected?.Invoke(firearmData);
     }
+
+    public ItemData GetItemData()
+    {
+        return firearmData;
+    }
 }

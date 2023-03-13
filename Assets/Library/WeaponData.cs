@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Item Data/ Weapon")]
 public class WeaponData : ItemData
 {
     public EGunType gunType;

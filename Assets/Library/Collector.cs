@@ -14,7 +14,9 @@ public class Collector : MonoBehaviour
 
         if (item != null)
         {
-            if (item is Firearm)
+            var itemData = item.GetItemData();
+
+            if (!itemData.autoPickup)
             {
                 Debug.Log("Getting Component");
                 if (gameObject.TryGetComponent<TopDownController>(out var controller))

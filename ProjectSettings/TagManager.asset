@@ -16,8 +16,8 @@ TagManager:
   - Projectile
   - Door
   - Wall
-  - 
-  - 
+  - Building
+  - InteractCollider
   - 
   - 
   - 

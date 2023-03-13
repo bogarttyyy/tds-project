@@ -6,5 +6,6 @@
     Health,
     Stamina,
     Ammo,
-    WeaponMelee
+    WeaponMelee,
+    Food
 }
