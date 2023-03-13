@@ -14,14 +14,22 @@ public class GameManager : MonoBehaviour
     [HorizontalLine(color: EColor.Gray)]
     public UIProgressBar hungerBar;
 
-    [SerializeField]
-    private int hungerCapacity;
-    [SerializeField]
-    private int currentHunger;
-    [SerializeField]
-    private int hungerRatePerSecond;
 
-    [HorizontalLine(color: EColor.Orange)]
+    [BoxGroup("Food")]
+    [SerializeField] private int foodCapacity;
+    [BoxGroup("Food")]
+    [SerializeField] private int currentFood;
+    [BoxGroup("Food")]
+    [Label("Hunger Rate")]
+    [SerializeField] private int hungerRatePerSecond;
+    [BoxGroup("Person")]
+    [SerializeField] private int personCapacity;
+    [BoxGroup("Person")]
+    [SerializeField] private int currentPerson;
+    [BoxGroup("Wood")]
+    [SerializeField] private int woodCapacity;
+    [BoxGroup("Wood")]
+    [SerializeField] private int currentWood;
     [SerializeField]
     private List<Building> buildingList = new List<Building>();
 
@@ -44,25 +52,83 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GoHungry()
     {
-        while (currentHunger > 0)
+        while (currentFood > 0)
         {
             yield return new WaitForSeconds(1);
-            currentHunger -= hungerRatePerSecond;
+            currentFood -= hungerRatePerSecond;
         }
     }
 
     private void UpdateHungerUI()
     {
         // Hunger currently set to 200 before reflecting on the progressbar
-        if (currentHunger <= 200)
+        if (currentFood <= 200)
         {
-            hungerBar.progressValue.fillAmount =  currentHunger / 200f;
+            hungerBar.progressValue.fillAmount =  currentFood / 200f;
         }
     }
-
 
     public Player GetPlayer()
     {
         return player;
+    }
+
+    public void HandleOnBuildingPlaced(Component component, object data)
+    {
+        Building building = data as Building;
+        buildingList.Add(building);
+        AddResourceCapacity(building);
+    }
+
+    public void HandleOnBuildingRemoved(Component component, object data)
+    {
+        Building building = data as Building;
+        buildingList.Remove(building);
+        SubtractResourceCapacity(building);
+    }
+
+    private void AddResourceCapacity(Building building)
+    {
+        if (building.buildingData is StorageBuildingData storageData)
+        {
+            switch (storageData.buildingType)
+            {
+                case EBuildingType.Person:
+                    personCapacity += storageData.capacity;
+                    break;
+                case EBuildingType.Food:
+                    foodCapacity += storageData.capacity;
+                    break;
+                case EBuildingType.Wood:
+                    woodCapacity += storageData.capacity;
+                    break;
+                case EBuildingType.Pet:
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void SubtractResourceCapacity(Building building)
+    {
+
+        if (building.buildingData is StorageBuildingData storageData)
+        {
+            switch (storageData.buildingType)
+            {
+                case EBuildingType.Person:
+                    personCapacity -= storageData.capacity;
+                    break;
+                case EBuildingType.Food:
+                    foodCapacity -= storageData.capacity;
+                    break;
+                case EBuildingType.Wood:
+                    woodCapacity -= storageData.capacity;
+                    break;
+                case EBuildingType.Pet:
+                default:
+                    break;
+            }
+        }
     }
 }

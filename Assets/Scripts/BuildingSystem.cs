@@ -28,6 +28,8 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField]
     private GameObject woodStoragePrefab;
 
+    public GameEvent onBuildingPlaced;
+
 
     private void OnEnable()
     {
@@ -102,6 +104,7 @@ public class BuildingSystem : MonoBehaviour
         mousePos.z = 0;
         GameObject building = Instantiate(selectedBuilding, mousePos, Quaternion.identity);
         Building data = building.GetComponent<Building>();
-        Debug.Log($"{data.buildingData} placed!");
+        onBuildingPlaced.Raise(this, data);
+        Debug.Log($"{data.buildingData.buildingName} placed!");
     }
 }

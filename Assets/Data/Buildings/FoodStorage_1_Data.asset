@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FoodStorage_1_Data
   m_EditorClassIdentifier: 
   buildingName: Food Storage
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 1020020443438349308, guid: e50aa2efdf4244a44ae2d52b999750a0, type: 3}
   tier: 1
   buildingType: 1
-  capacity: 100
+  capacity: 50

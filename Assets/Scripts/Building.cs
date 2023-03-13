@@ -13,6 +13,6 @@ public class Building : MonoBehaviour, IBuilding, IInteractable
 
     public void Interact(object obj = null)
     {
-        Debug.Log("House Interact");
+        Debug.Log($"{buildingData.buildingName} Interact");
     }
 }

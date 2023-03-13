@@ -3,5 +3,5 @@
     Person = 0,
     Food,
     Wood,
-    Pet
+    Pet // Maybe future implementation?
 }
