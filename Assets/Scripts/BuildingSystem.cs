@@ -1,6 +1,4 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +12,7 @@ public class BuildingSystem : MonoBehaviour
 
     [Header("Bindings")]
     public InputAction build;
+    public InputAction remove;
     [HorizontalLine]
     public InputAction selectHouse;
     public InputAction selectFood;
@@ -29,11 +28,13 @@ public class BuildingSystem : MonoBehaviour
     private GameObject woodStoragePrefab;
 
     public GameEvent onBuildingPlaced;
+    public GameEvent onBuildingDestroyed;
 
 
     private void OnEnable()
     {
         build.performed += Build_performed;
+        remove.performed += Remove_performed;
         selectHouse.performed += SelectHouse_performed;
         selectFood.performed += SelectFood_performed;
         selectWood.performed += SelectWood_performed;
@@ -43,6 +44,7 @@ public class BuildingSystem : MonoBehaviour
     private void OnDisable()
     {
         build.performed -= Build_performed;
+        remove.performed -= Remove_performed;
         selectHouse.performed -= SelectHouse_performed;
         selectFood.performed -= SelectFood_performed;
         selectWood.performed -= SelectWood_performed;
@@ -55,6 +57,7 @@ public class BuildingSystem : MonoBehaviour
         if (!player.HasEquip())
         {
             build.Enable();
+            remove.Enable();
             selectHouse.Enable();
             selectFood.Enable();
             selectWood.Enable();
@@ -62,6 +65,7 @@ public class BuildingSystem : MonoBehaviour
         else
         {
             build.Disable();
+            remove.Disable();
             selectHouse.Disable();
             selectFood.Disable();
             selectWood.Disable();
@@ -98,6 +102,11 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
+    private void Remove_performed(InputAction.CallbackContext obj)
+    {
+        RemoveBuilding();
+    }
+
     private void PlaceBuilding()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -106,5 +115,22 @@ public class BuildingSystem : MonoBehaviour
         Building data = building.GetComponent<Building>();
         onBuildingPlaced.Raise(this, data);
         Debug.Log($"{data.buildingData.buildingName} placed!");
+    }
+
+    private void RemoveBuilding()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        
+        // TODO
+
+        //if (hit.rigidbody)
+        //{
+        //    if (hit.transform.gameObject.TryGetComponent<Building>(out var building))
+        //    {
+        //        onBuildingDestroyed.Raise(this, building);
+        //    }
+        //}
+        
     }
 }

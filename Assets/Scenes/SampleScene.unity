@@ -1598,6 +1598,7 @@ GameObject:
   - component: {fileID: 668618974}
   - component: {fileID: 668618975}
   - component: {fileID: 668618976}
+  - component: {fileID: 668618977}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1673,6 +1674,23 @@ MonoBehaviour:
       m_Action: Build
       m_Flags: 0
     m_Flags: 0
+  remove:
+    m_Name: Remove
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b6c52ec3-1d93-43c2-8e1b-9ffc149f3ca8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 663d5f95-fd3c-4bf9-843f-dafe68e837d9
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Remove
+      m_Flags: 0
+    m_Flags: 0
   selectHouse:
     m_Name: Select House
     m_Type: 0
@@ -1728,6 +1746,7 @@ MonoBehaviour:
   foodStoragePrefab: {fileID: 1020020443438349308, guid: e50aa2efdf4244a44ae2d52b999750a0, type: 3}
   woodStoragePrefab: {fileID: 9182263570782434174, guid: 3583e7a8af5a1d443b9878160694ee8d, type: 3}
   onBuildingPlaced: {fileID: 11400000, guid: 3876b79e0c5711e459ec362bff6cfefc, type: 2}
+  onBuildingDestroyed: {fileID: 11400000, guid: e929ebe4c5ad2d644adc4d1ef1127457, type: 2}
 --- !u!114 &668618976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,6 +1766,34 @@ MonoBehaviour:
       - m_Target: {fileID: 668618974}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: HandleOnBuildingPlaced
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &668618977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668618972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d3b86cf4fecf0408b476b33a29c79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e929ebe4c5ad2d644adc4d1ef1127457, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 668618974}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandleOnBuildingRemoved
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

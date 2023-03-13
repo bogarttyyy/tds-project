@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 1972895065001808329}
   - component: {fileID: 7042276065324210762}
   - component: {fileID: 1304528961173547308}
+  - component: {fileID: -1200034837642858772}
   m_Layer: 12
   m_Name: WoodStorage
   m_TagString: Untagged
@@ -300,3 +301,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingData: {fileID: 11400000, guid: f9ff4d45f0f67c544adcba52cdd22a81, type: 2}
+--- !u!50 &-1200034837642858772
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182263570782434174}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

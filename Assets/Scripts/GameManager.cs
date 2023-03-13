@@ -111,24 +111,30 @@ public class GameManager : MonoBehaviour
 
     private void SubtractResourceCapacity(Building building)
     {
+        Debug.Log($"In Building list: {buildingList.Contains(building)}");
 
-        if (building.buildingData is StorageBuildingData storageData)
+        if (buildingList.Contains(building))
         {
-            switch (storageData.buildingType)
+            if (building.buildingData is StorageBuildingData storageData)
             {
-                case EBuildingType.Person:
-                    personCapacity -= storageData.capacity;
-                    break;
-                case EBuildingType.Food:
-                    foodCapacity -= storageData.capacity;
-                    break;
-                case EBuildingType.Wood:
-                    woodCapacity -= storageData.capacity;
-                    break;
-                case EBuildingType.Pet:
-                default:
-                    break;
+                switch (storageData.buildingType)
+                {
+                    case EBuildingType.Person:
+                        personCapacity -= storageData.capacity;
+                        break;
+                    case EBuildingType.Food:
+                        foodCapacity -= storageData.capacity;
+                        break;
+                    case EBuildingType.Wood:
+                        woodCapacity -= storageData.capacity;
+                        break;
+                    case EBuildingType.Pet:
+                    default:
+                        break;
+                }
             }
         }
+
+        Destroy(building);
     }
 }
