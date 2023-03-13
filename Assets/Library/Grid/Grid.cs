@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
-public class Grid
+public class Grid<T>
 {
     private int width;
     private int height;
     private float cellSize;
 
 
-    private int[,] gridArray;
+    private T[,] gridArray;
     
     public Grid(int x, int y, float cellSize)
     {
@@ -17,7 +20,7 @@ public class Grid
         height = y;
         this.cellSize = cellSize;
 
-        gridArray = new int[width,height];
+        gridArray = new T[width,height];
         GenerateGrid();
     }
 
@@ -38,5 +41,44 @@ public class Grid
     private Vector3 GetWorldPosition(int x, int y)
     {
         return new Vector3(x,y) * cellSize;
+    }
+
+    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    {
+        x = Mathf.FloorToInt(worldPosition.x / cellSize);
+        y = Mathf.FloorToInt(worldPosition.y / cellSize);
+    }
+
+    public void SetValue(int x, int y, T value)
+    {
+        // NOTE: This limits the grid to the set width and height
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            gridArray[x,y] = value;
+            Debug.Log($"Setting value: {value} at {x},{y}");
+        }
+    }
+
+    public void SetValue(Vector3 worldPosition, T value)
+    {
+        GetXY(worldPosition, out int x, out int y);
+        SetValue(x, y, value);
+    }
+
+    public T GetValueAt(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            return gridArray[x, y];
+        }
+
+        return default;
+    }
+
+    public T GetValueAt(Vector3 worldPosition)
+    {
+        Debug.Log("attempting value get");
+        GetXY(worldPosition, out int x, out int y);
+        return GetValueAt(x, y);
     }
 }
