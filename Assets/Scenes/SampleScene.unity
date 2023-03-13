@@ -1635,8 +1635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 809799191}
   hungerBar: {fileID: 2104100989}
-  foodCapacity: 0
-  currentFood: 0
+  foodCapacity: 200
+  currentFood: 200
   hungerRatePerSecond: 1
   personCapacity: 0
   currentPerson: 0
@@ -4558,6 +4558,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 697694341175412138, guid: 469bb83892397394c9bd9207e7c8e1f4, type: 3}
   m_PrefabInstance: {fileID: 36016884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2088384312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088384314}
+  - component: {fileID: 2088384313}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2088384313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088384312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48d3d6f6ed5e414cbc7b97ebd0821b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2088384314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088384312}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7513194, y: 2.3678896, z: -0.14507538}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2104100988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6009020979730439828, guid: a7bff476d23e7c546963377a70499154, type: 3}
