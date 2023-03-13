@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IBuilding
+public class Building : MonoBehaviour, IBuilding, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    public BuildingData buildingData;
+
+    public BuildingData GetBuildingData()
     {
-        
+        return buildingData;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact(object obj = null)
     {
-        
+        Debug.Log("House Interact");
     }
 }

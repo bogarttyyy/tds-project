@@ -88,6 +88,11 @@ public class Player : MonoBehaviour
         sprite.flipX = true;
     }
 
+    public bool HasEquip()
+    {
+        return hasEquipped;
+    }
+
     private void OpenInventory(InputAction.CallbackContext context)
     {
         inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);

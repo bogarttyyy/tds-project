@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBuilding
 {
-
+    public BuildingData GetBuildingData();
 }
