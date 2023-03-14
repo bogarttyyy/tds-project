@@ -40,6 +40,10 @@ public class BuildingSystem : MonoBehaviour
     private PlayerControls playerControls;
     private Grid<Building> buildingGrid;
 
+    [Header("Debug")]
+    [SerializeField]
+    private bool isSnapDisabled;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -72,7 +76,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Start()
     {
-        buildingGrid = new Grid<Building>(cellSize: 1f, 200, 200);
+        buildingGrid = new Grid<Building>(cellSize: 2f, 200, 200);
     }
 
     private void Update()
@@ -96,8 +100,16 @@ public class BuildingSystem : MonoBehaviour
 
         if (selectedBuilding != null)
         {
-            Vector3 cellWorldPos = buildingGrid.GetCellWorldPosition(CommonHelper.GetMouseWorldPos2D());
-            selectedBuilding.transform.position = cellWorldPos;
+            Vector3 mousePos = CommonHelper.GetMouseWorldPos2D();
+            Vector3 cellWorldPos = buildingGrid.GetCellWorldPosition(mousePos);
+            if (!isSnapDisabled)
+            {
+                selectedBuilding.transform.position = cellWorldPos;
+            }
+            else
+            {
+                selectedBuilding.transform.position = mousePos;
+            }
         }
     }
 
@@ -154,11 +166,6 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    private void Remove_performed(InputAction.CallbackContext obj)
-    {
-        RemoveBuilding();
-    }
-
     private void PlaceBuilding()
     {
         Vector3 cellWorldPos = buildingGrid.GetCellWorldPosition(CommonHelper.GetMouseWorldPos2D());
@@ -174,11 +181,21 @@ public class BuildingSystem : MonoBehaviour
         ClearBuildingSelection();
     }
 
+    private void Remove_performed(InputAction.CallbackContext obj)
+    {
+        RemoveBuilding();
+    }
+
     private void ClearBuildingSelection()
     {
+
         if (selectedBuilding != null)
         {
-            Destroy(selectedBuilding);
+            Building building = selectedBuilding.GetComponent<Building>();
+            if (!building.isPlaced)
+            {
+                Destroy(selectedBuilding);            
+            }
         }
 
         // Clean SelectedBuilding variable

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3019280664271232704}
   - component: {fileID: 2416782813052703701}
   - component: {fileID: 6270017618093243540}
+  - component: {fileID: 6885541275486970790}
   m_Layer: 0
   m_Name: Berry
   m_TagString: Untagged
@@ -97,4 +98,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9d702888941342ab910ad7ed5f718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinData: {fileID: 11400000, guid: 0704f296e0c1fe645ab57158013ca012, type: 2}
+  foodData: {fileID: 0}
+--- !u!58 &6885541275486970790
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724193423361708807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997

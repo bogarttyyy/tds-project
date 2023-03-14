@@ -61,8 +61,9 @@ public class Grid<T>
 
     public Vector3 GetCellWordPosition(int x, int y)
     {
+        Vector3 coordinateWorldPos = GetWorldPosition(x, y);
         float halfCell = cellSize / 2;
-        return new Vector3(x + halfCell, y + halfCell);
+        return new Vector3(coordinateWorldPos.x + halfCell, coordinateWorldPos.y + halfCell);
     }
 
     public Vector3 GetCellWorldPosition(Vector3 worldPosition)
