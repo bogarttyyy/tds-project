@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
     public Player player;
 
     [HorizontalLine(color: EColor.Gray)]
+
+
+    [BoxGroup("Food")]
     public UIProgressBar hungerBar;
-
-
     [BoxGroup("Food")]
     [SerializeField] private int foodCapacity;
     [BoxGroup("Food")]

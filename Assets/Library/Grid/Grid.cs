@@ -53,10 +53,22 @@ public class Grid<T>
         return new Vector3(x,y) * cellSize;
     }
 
-    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
         x = Mathf.FloorToInt(worldPosition.x / cellSize);
         y = Mathf.FloorToInt(worldPosition.y / cellSize);
+    }
+
+    public Vector3 GetCellWordPosition(int x, int y)
+    {
+        float halfCell = cellSize / 2;
+        return new Vector3(x + halfCell, y + halfCell);
+    }
+
+    public Vector3 GetCellWorldPosition(Vector3 worldPosition)
+    {
+        GetXY(worldPosition, out int x, out int y);
+        return GetCellWordPosition(x, y);
     }
 
     public void SetValue(int x, int y, T value)

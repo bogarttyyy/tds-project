@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class BuildingSystem : MonoBehaviour
 {
+    [Label("Build Mode")]
+    [SerializeField]
+    private bool isBuildModeActivated;
+    [HorizontalLine]
     public Player player;
     
     [Header("Selected")]
@@ -35,8 +39,6 @@ public class BuildingSystem : MonoBehaviour
 
     private PlayerControls playerControls;
     private Grid<Building> buildingGrid;
-
-    private bool isBuildModeActivated;
 
     private void Awake()
     {
@@ -70,7 +72,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Start()
     {
-        buildingGrid = new Grid<Building>(cellSize: 1f);
+        buildingGrid = new Grid<Building>(cellSize: 1f, 200, 200);
     }
 
     private void Update()
@@ -94,15 +96,21 @@ public class BuildingSystem : MonoBehaviour
 
         if (selectedBuilding != null)
         {
-            selectedBuilding.transform.position = CommonHelper.GetMouseWorldPos2D();
+            Vector3 cellWorldPos = buildingGrid.GetCellWorldPosition(CommonHelper.GetMouseWorldPos2D());
+            selectedBuilding.transform.position = cellWorldPos;
         }
     }
 
     private void ActivateBuildMode(InputAction.CallbackContext obj)
     {
-        Debug.Log("Activate Build Mode");
         isBuildModeActivated = !isBuildModeActivated;
         player.BuildModeActive(isBuildModeActivated);
+        Debug.Log($"Build Mode: {isBuildModeActivated}");
+
+        if (!isBuildModeActivated)
+        {
+            ClearBuildingSelection();
+        }
     }
 
     private void SelectWood_performed(InputAction.CallbackContext obj)
@@ -153,13 +161,25 @@ public class BuildingSystem : MonoBehaviour
 
     private void PlaceBuilding()
     {
-        Vector3 mousePos = CommonHelper.GetMouseWorldPos2D();
-        selectedBuilding.transform.position = mousePos;
+        Vector3 cellWorldPos = buildingGrid.GetCellWorldPosition(CommonHelper.GetMouseWorldPos2D());
+        selectedBuilding.transform.position = cellWorldPos;
 
         //GameObject building = Instantiate(selectedBuilding, mousePos, Quaternion.identity);
-        Building data = selectedBuilding.GetComponent<Building>();
-        onBuildingPlaced.Raise(this, data);
-        Debug.Log($"{data.buildingData.buildingName} placed!");
+        Building building = selectedBuilding.GetComponent<Building>();
+        building.BuildingPlaced();
+        onBuildingPlaced.Raise(this, building);
+
+        Debug.Log($"{building.buildingData.buildingName} placed!");
+
+        ClearBuildingSelection();
+    }
+
+    private void ClearBuildingSelection()
+    {
+        if (selectedBuilding != null)
+        {
+            Destroy(selectedBuilding);
+        }
 
         // Clean SelectedBuilding variable
         selectedBuilding = null;
