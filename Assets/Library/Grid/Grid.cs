@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.Tilemaps;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Grid<T>
 {
@@ -13,8 +12,19 @@ public class Grid<T>
 
 
     private T[,] gridArray;
-    
-    public Grid(int x, int y, float cellSize)
+
+    public Grid(float cellSize)
+    {
+        this.cellSize = cellSize;
+        
+        // TEMPORARY DEFAULT
+        // Change logic later
+        gridArray = new T[10,10];
+
+        GenerateGrid();
+    }
+
+    public Grid(float cellSize, int x, int y)
     {
         width = x;
         height = y;

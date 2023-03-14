@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class ShootingSystem : MonoBehaviour
 {
-    public Firearm gun;
+    public Player player;
 
+    public Firearm gun;
     public PlayerControls playerControls;
     private InputAction fire;
 
@@ -14,19 +15,34 @@ public class ShootingSystem : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+
+        if (player == null)
+        {
+            player = GetComponent<Player>();
+        }
     }
 
     private void OnEnable()
     {
         fire = playerControls.Player.Fire;
-        fire.Enable();
         fire.performed += Fire_performed;
     }
 
     private void OnDisable()
     {
-        fire.Disable();
         fire.performed -= Fire_performed;
+    }
+
+    private void Update()
+    {
+        if (player.CanAttack())
+        {
+            fire.Enable();
+        }
+        else
+        {
+            fire.Disable();
+        }
     }
 
     private void Fire_performed(InputAction.CallbackContext obj)

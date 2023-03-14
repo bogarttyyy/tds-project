@@ -23,7 +23,12 @@ public class Player : MonoBehaviour
 
     private Transform weapon;
 
+    [SerializeField]
     private bool hasEquipped;
+    [SerializeField]
+    private bool isInBuildMode;
+    [SerializeField]
+    private bool canAttack;
 
     private void OnEnable()
     {
@@ -63,6 +68,8 @@ public class Player : MonoBehaviour
             onEquipFirearm.Raise(this, weapon);
         }
 
+        EnableAttackCheck();
+
         //weaponAnchor.localPosition = new Vector3(0.5f, 0);
 
         SpriteRenderer sprite = weapon.gameObject.GetComponent<SpriteRenderer>();
@@ -88,6 +95,20 @@ public class Player : MonoBehaviour
         sprite.flipX = true;
     }
 
+    public bool EnableAttackCheck()
+    {
+        if (hasEquipped && !isInBuildMode)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            canAttack = false;
+        }
+
+        return canAttack;
+    }
+
     public bool HasEquip()
     {
         return hasEquipped;
@@ -104,5 +125,20 @@ public class Player : MonoBehaviour
         {
             Debug.Log($"{timeOfDay}");
         }
+    }
+
+    public void BuildModeActive(bool isActive)
+    {
+        if (isActive)
+        {
+            inventoryUI.gameObject.SetActive(false);
+        }
+
+        isInBuildMode = isActive;
+    }
+
+    public bool CanAttack()
+    {
+        return canAttack;
     }
 }

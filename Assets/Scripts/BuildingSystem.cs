@@ -11,6 +11,7 @@ public class BuildingSystem : MonoBehaviour
     private GameObject selectedBuilding;
 
     [Header("Bindings")]
+    public InputAction activateBuildMode;
     public InputAction build;
     public InputAction remove;
     [HorizontalLine]
@@ -30,9 +31,21 @@ public class BuildingSystem : MonoBehaviour
     public GameEvent onBuildingPlaced;
     public GameEvent onBuildingDestroyed;
 
+    private PlayerControls playerControls;
+    private Grid<Building> buildingGrid;
+
+    private bool isBuildModeActivated;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
 
     private void OnEnable()
     {
+        activateBuildMode = playerControls.Player.BuildMode;
+        activateBuildMode.Enable();
+        activateBuildMode.performed += ActivateBuildMode;
         build.performed += Build_performed;
         remove.performed += Remove_performed;
         selectHouse.performed += SelectHouse_performed;
@@ -43,6 +56,8 @@ public class BuildingSystem : MonoBehaviour
 
     private void OnDisable()
     {
+        activateBuildMode.Disable();
+        activateBuildMode.performed -= ActivateBuildMode;
         build.performed -= Build_performed;
         remove.performed -= Remove_performed;
         selectHouse.performed -= SelectHouse_performed;
@@ -51,10 +66,14 @@ public class BuildingSystem : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        buildingGrid = new Grid<Building>(cellSize: 1f);
+    }
+
     private void Update()
     {
-        // TEMPORARY POC: If player has equip, disable build
-        if (!player.HasEquip())
+        if (isBuildModeActivated)
         {
             build.Enable();
             remove.Enable();
@@ -70,6 +89,13 @@ public class BuildingSystem : MonoBehaviour
             selectFood.Disable();
             selectWood.Disable();
         }
+    }
+
+    private void ActivateBuildMode(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Activate Build Mode");
+        isBuildModeActivated = !isBuildModeActivated;
+        player.BuildModeActive(isBuildModeActivated);
     }
 
     private void SelectWood_performed(InputAction.CallbackContext obj)

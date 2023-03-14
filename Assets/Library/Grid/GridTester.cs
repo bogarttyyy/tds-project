@@ -7,7 +7,7 @@ public class GridTester : MonoBehaviour
     private Grid<int> grid;
     private void Start()
     {
-        grid = new Grid<int>(4, 4, 2f);
+        grid = new Grid<int>(2f, 4, 4);
     }
 
     private void Update()
