@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
         Coin.OnCoinCollected += Add;
         Firearm.OnFirearmCollected += AddFirearm;
         Material.OnMaterialCollected += AddMaterial;
+        Food.OnFoodCollected += AddFood;
     }
 
     private void OnDisable()
@@ -26,6 +27,7 @@ public class Inventory : MonoBehaviour
         Coin.OnCoinCollected -= Add;
         Firearm.OnFirearmCollected -= AddFirearm;
         Material.OnMaterialCollected -= AddMaterial;
+        Food.OnFoodCollected -= AddFood;
     }
 
     public void Add(ItemData itemData)
@@ -59,6 +61,11 @@ public class Inventory : MonoBehaviour
     }
 
     private void AddMaterial(MaterialData itemData)
+    {
+        Add(itemData);
+    }
+
+    private void AddFood(FoodData itemData)
     {
         Add(itemData);
     }
