@@ -2,11 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class Collector : MonoBehaviour
 {
     private InputAction interact;
     private ICollectable item;
+
+    private void OnEnable()
+    {
+        if (gameObject.TryGetComponent<TopDownController>(out var controller))
+        {
+            interact = controller.playerControls.Player.Interact;
+            interact.performed += Pickup;
+        }
+    }
+
+    private void OnDisable()
+    {
+        interact.performed -= Pickup;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,14 +33,7 @@ public class Collector : MonoBehaviour
 
             if (!itemData.autoPickup)
             {
-                Debug.Log("Getting Component");
-                if (gameObject.TryGetComponent<TopDownController>(out var controller))
-                {
-                    interact = controller.playerControls.Player.Interact;
-                    interact.performed += Pickup;
-                    interact.Enable();
-                    Debug.Log("For Pickup");
-                }
+                interact.Enable();
             }
             else
             {
@@ -38,7 +46,6 @@ public class Collector : MonoBehaviour
     {
         if (interact != null)
         {
-            interact.performed -= Pickup;
             interact.Disable();
         }
     }

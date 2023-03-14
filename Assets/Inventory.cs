@@ -18,12 +18,14 @@ public class Inventory : MonoBehaviour
     {
         Coin.OnCoinCollected += Add;
         Firearm.OnFirearmCollected += AddFirearm;
+        Material.OnMaterialCollected += AddMaterial;
     }
 
     private void OnDisable()
     {
         Coin.OnCoinCollected -= Add;
         Firearm.OnFirearmCollected -= AddFirearm;
+        Material.OnMaterialCollected -= AddMaterial;
     }
 
     public void Add(ItemData itemData)
@@ -54,6 +56,11 @@ public class Inventory : MonoBehaviour
             Add(itemData);
             OnFirearmAddedToInventory?.Invoke(GetFirearms());
         }
+    }
+
+    private void AddMaterial(MaterialData itemData)
+    {
+        Add(itemData);
     }
 
     public void Remove(ItemData itemData)
