@@ -14,11 +14,13 @@ public class TopDownController : MonoBehaviour
     public PlayerControls playerControls;
     private Vector2 moveDirection;
     private InputAction move;
+    private InputAction run;
     private InputAction fire;
 
     public Animator animator;
 
     public bool useFlipSprite = false;
+    public bool isRunning = false;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class TopDownController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        moveSpeed = walkSpeed;
     }
 
     private void OnEnable()
@@ -36,15 +39,29 @@ public class TopDownController : MonoBehaviour
         move = playerControls.Player.Move;
         move.Enable();
 
+        run = playerControls.Player.Run;
+        run.performed += Run_performed;
+        run.Enable();
+
         //fire = playerControls.Player.Fire;
         //fire.Enable();
         //fire.performed += Fire;
     }
 
+    private void Run_performed(InputAction.CallbackContext obj)
+    {
+        isRunning = !isRunning;
+        animator.SetBool("Running", isRunning);
+
+        moveSpeed = (isRunning ? sprintSpeed : walkSpeed);
+    }
+
     private void OnDisable()
     {
         move.Disable();
+        run.Disable();
 
+        run.performed -= Run_performed;
         //fire.performed -= Fire;
         //fire.Disable();
     }
@@ -57,16 +74,16 @@ public class TopDownController : MonoBehaviour
 
         //moveInput.Normalize();
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            animator.SetBool("Running", true);
-            moveSpeed = sprintSpeed;
-        }
-        else
-        {
-            animator.SetBool("Running", false);
-            moveSpeed = walkSpeed;
-        }
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    animator.SetBool("Running", true);
+        //    moveSpeed = sprintSpeed;
+        //}
+        //else
+        //{
+        //    animator.SetBool("Running", false);
+        //    moveSpeed = walkSpeed;
+        //}
 
         moveDirection = move.ReadValue<Vector2>();
 

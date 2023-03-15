@@ -1991,7 +1991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &802529090
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2124,6 +2124,7 @@ MonoBehaviour:
   sprintSpeed: 10
   animator: {fileID: 809799197}
   useFlipSprite: 0
+  isRunning: 0
 --- !u!50 &809799188
 Rigidbody2D:
   serializedVersion: 4
@@ -2466,7 +2467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &835371501
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2801,7 +2802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &929122856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4280,7 +4281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1628557818
 MonoBehaviour:
   m_ObjectHideFlags: 0
