@@ -41,8 +41,11 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        inventoryOpen.performed -= OpenInventory;
-        inventoryOpen.Disable();
+        if (inventoryOpen != null)
+        {
+            inventoryOpen.performed -= OpenInventory;
+            inventoryOpen.Disable();
+        }
     }
 
     private void Update()

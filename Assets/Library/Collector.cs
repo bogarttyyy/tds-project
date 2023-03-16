@@ -13,6 +13,10 @@ public class Collector : MonoBehaviour
     {
         if (gameObject.TryGetComponent<TopDownController>(out var controller))
         {
+            Debug.Log($"Controller: {controller == null}");
+            Debug.Log($"Controls: {controller.playerControls == null}");
+            Debug.Log($"Player: {controller.playerControls?.Player == null}");
+            Debug.Log($"Interact: {controller.playerControls?.Player.Interact == null}");
             interact = controller.playerControls.Player.Interact;
             interact.performed += Pickup;
         }
@@ -20,7 +24,10 @@ public class Collector : MonoBehaviour
 
     private void OnDisable()
     {
-        interact.performed -= Pickup;
+        if (interact != null)
+        {
+            interact.performed -= Pickup;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class TopDownController : MonoBehaviour
 
         run = playerControls.Player.Run;
         run.performed += Run_performed;
+        run.canceled += Run_canceled;
         run.Enable();
 
         //fire = playerControls.Player.Fire;
@@ -48,12 +50,20 @@ public class TopDownController : MonoBehaviour
         //fire.performed += Fire;
     }
 
+    private void Run_canceled(InputAction.CallbackContext obj)
+    {
+        isRunning = false;
+        animator.SetBool("Running", isRunning);
+        moveSpeed = walkSpeed;
+    }
+
     private void Run_performed(InputAction.CallbackContext obj)
     {
-        isRunning = !isRunning;
+        Debug.Log("Performed!");
+        isRunning = true;
         animator.SetBool("Running", isRunning);
 
-        moveSpeed = (isRunning ? sprintSpeed : walkSpeed);
+        moveSpeed = sprintSpeed;
     }
 
     private void OnDisable()
@@ -62,6 +72,7 @@ public class TopDownController : MonoBehaviour
         run.Disable();
 
         run.performed -= Run_performed;
+        run.canceled -= Run_canceled;
         //fire.performed -= Fire;
         //fire.Disable();
     }
