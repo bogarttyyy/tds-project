@@ -5,14 +5,17 @@ using TreeEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IBuilding, IInteractable
+public class Building : MonoBehaviour, IBuilding
 {
     public BuildingData buildingData;
 
     private List<Collider2D> colliders;
 
-    public bool isPlaced;
+    public int currentMaterials;
 
+    public bool isPlaced;
+    public bool inProgress;
+    public bool isBuilt;
     private void OnEnable()
     {
         isPlaced = false;
@@ -43,10 +46,5 @@ public class Building : MonoBehaviour, IBuilding, IInteractable
     public BuildingData GetBuildingData()
     {
         return buildingData;
-    }
-
-    public void Interact(object obj = null)
-    {
-        Debug.Log($"{buildingData.buildingName} Interact");
     }
 }

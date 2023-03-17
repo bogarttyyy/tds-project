@@ -15,3 +15,6 @@ MonoBehaviour:
   buildingName: Fireplace
   buildingPrefab: {fileID: 8922385413660725474, guid: b95207fa0375701458627f20760f221f, type: 3}
   tier: 1
+  materialsRequired:
+  - materialType: 0
+    materialNumber: 5

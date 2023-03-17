@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CampFire : MonoBehaviour, IInteractable
+public class CampFire : Building, IInteractable
 {
     [SerializeField]
     private bool isLit;
@@ -17,6 +17,8 @@ public class CampFire : MonoBehaviour, IInteractable
 
     public void Interact(object obj = null)
     {
+        isLit = !isLit;
+
         if (!isLit)
         {
             spriteRenderer.color = Color.yellow;
@@ -25,7 +27,5 @@ public class CampFire : MonoBehaviour, IInteractable
         {
             spriteRenderer.color = new Color(0.66f, 0.34f, 0, 1);
         }
-
-        isLit = !isLit;
     }
 }

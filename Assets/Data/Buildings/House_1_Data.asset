@@ -15,5 +15,8 @@ MonoBehaviour:
   buildingName: Wooden House
   buildingPrefab: {fileID: 6412986239619491528, guid: 4511a7545cfbcb546a777c1c72085ceb, type: 3}
   tier: 1
+  materialsRequired:
+  - materialType: 0
+    materialNumber: 20
   buildingType: 0
   capacity: 2

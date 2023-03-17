@@ -15,5 +15,8 @@ MonoBehaviour:
   buildingName: Wood Shack
   buildingPrefab: {fileID: 0}
   tier: 1
+  materialsRequired:
+  - materialType: 0
+    materialNumber: 10
   buildingType: 2
   capacity: 10

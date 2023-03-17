@@ -15,5 +15,8 @@ MonoBehaviour:
   buildingName: Food Storage
   buildingPrefab: {fileID: 1020020443438349308, guid: e50aa2efdf4244a44ae2d52b999750a0, type: 3}
   tier: 1
+  materialsRequired:
+  - materialType: 0
+    materialNumber: 5
   buildingType: 1
   capacity: 50
