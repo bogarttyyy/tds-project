@@ -23,6 +23,9 @@ public class TopDownController : MonoBehaviour
     public bool useFlipSprite = false;
     public bool isRunning = false;
 
+    [SerializeField]
+    private bool toggleRun = false;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -52,18 +55,24 @@ public class TopDownController : MonoBehaviour
 
     private void Run_canceled(InputAction.CallbackContext obj)
     {
-        isRunning = false;
-        animator.SetBool("Running", isRunning);
-        moveSpeed = walkSpeed;
+        if (!toggleRun)
+        {
+            isRunning = false;
+            ChangeMoveSpeed();
+        }
     }
 
     private void Run_performed(InputAction.CallbackContext obj)
     {
-        Debug.Log("Performed!");
-        isRunning = true;
-        animator.SetBool("Running", isRunning);
-
-        moveSpeed = sprintSpeed;
+        if (!toggleRun)
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = !isRunning;
+        }
+        ChangeMoveSpeed();
     }
 
     private void OnDisable()
@@ -73,31 +82,35 @@ public class TopDownController : MonoBehaviour
 
         run.performed -= Run_performed;
         run.canceled -= Run_canceled;
-        //fire.performed -= Fire;
-        //fire.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //moveInput.x = Input.GetAxisRaw("Horizontal");
-        //moveInput.y = Input.GetAxisRaw("Vertical");
-
-        //moveInput.Normalize();
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    animator.SetBool("Running", true);
-        //    moveSpeed = sprintSpeed;
-        //}
-        //else
-        //{
-        //    animator.SetBool("Running", false);
-        //    moveSpeed = walkSpeed;
-        //}
-
         moveDirection = move.ReadValue<Vector2>();
 
+        if (toggleRun && moveDirection == Vector2.zero)
+        {
+            isRunning = false;
+            ChangeMoveSpeed();
+        }
+
+        UpdateAnimation();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    private void ChangeMoveSpeed()
+    {
+        animator.SetBool("Running", isRunning);
+        moveSpeed = isRunning ? sprintSpeed : walkSpeed;
+    }
+
+    private void UpdateAnimation()
+    {
         animator.SetFloat("Horizontal", moveDirection.x);
         animator.SetFloat("Speed", moveDirection.sqrMagnitude);
 
@@ -118,10 +131,5 @@ public class TopDownController : MonoBehaviour
                 transform.localScale = new Vector3(2, 2);
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 }
