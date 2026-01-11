@@ -6,6 +6,11 @@ public class FoodStorage : MonoBehaviour, IBuilding, IInteractable
 {
     public StorageBuildingData buildingData;
 
+    public void Build()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public BuildingData GetBuildingData()
     {
         return buildingData;

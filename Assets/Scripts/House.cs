@@ -6,6 +6,11 @@ public class House : MonoBehaviour, IBuilding, IInteractable
 {
     public StorageBuildingData buildingData;
 
+    public void Build()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public BuildingData GetBuildingData()
     {
         throw new System.NotImplementedException();

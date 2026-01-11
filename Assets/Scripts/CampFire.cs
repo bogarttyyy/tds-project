@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CampFire : Building, IInteractable
+public class CampFire : Building
 {
     [SerializeField]
     private bool isLit;
@@ -15,17 +15,21 @@ public class CampFire : Building, IInteractable
         spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
-    public void Interact(object obj = null)
+    public override void Interact(object obj = null)
     {
-        isLit = !isLit;
+        if (isBuilt)
+        {
+            isLit = !isLit;
 
-        if (!isLit)
-        {
-            spriteRenderer.color = Color.yellow;
-        }
-        else
-        {
-            spriteRenderer.color = new Color(0.66f, 0.34f, 0, 1);
+            if (!isLit)
+            {
+                spriteRenderer.color = Color.yellow;
+            }
+            else
+            {
+                spriteRenderer.color = new Color(0.66f, 0.34f, 0, 1);
+            }
         }
     }
+
 }

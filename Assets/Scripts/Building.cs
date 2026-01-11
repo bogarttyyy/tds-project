@@ -5,13 +5,13 @@ using TreeEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IBuilding
+public abstract class Building : MonoBehaviour, IBuilding
 {
     public BuildingData buildingData;
 
     private List<Collider2D> colliders;
 
-    public int currentMaterials;
+    public RequiredMaterials[] currentMaterials;
 
     public bool isPlaced;
     public bool inProgress;
@@ -46,5 +46,12 @@ public class Building : MonoBehaviour, IBuilding
     public BuildingData GetBuildingData()
     {
         return buildingData;
+    }
+
+    public abstract void Interact(object obj = null);
+
+    public void Build()
+    {
+        RequiredMaterials[] material = buildingData.materialsRequired;
     }
 }
