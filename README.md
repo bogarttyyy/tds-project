@@ -1,3 +1,5 @@
+# 2D Survival BASE
+
 Prototype for a 2D survival game with enemies, shooting mechanic, inventory system, and going inside buildings concept.
 
 ## Controls:
