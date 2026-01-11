@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static TimeController;
 
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     public Transform weaponAnchor;
 
     private InputAction inventoryOpen;
+    private InputAction reset;
 
     public GameEvent onEquipFirearm;
 
@@ -35,6 +37,10 @@ public class Player : MonoBehaviour
         inventoryOpen = topDownController.playerControls.Player.Inventory;
         inventoryOpen.Enable();
         inventoryOpen.performed += OpenInventory;
+        
+        reset = topDownController.playerControls.Player.ResetScene;
+        reset.Enable();
+        reset.performed += Reset_performed;
 
         inventoryUI.gameObject.SetActive(false);
     }
@@ -46,6 +52,18 @@ public class Player : MonoBehaviour
             inventoryOpen.performed -= OpenInventory;
             inventoryOpen.Disable();
         }
+
+        if (reset != null)
+        {
+            reset.performed -= Reset_performed;
+            reset.Disable();
+        }
+    }
+
+    private void Reset_performed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Reset performed");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
